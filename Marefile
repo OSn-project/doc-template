@@ -1,0 +1,22 @@
+style_dir = "style"
+template = "template.htm"
+
+email = "electron826@gmail.com"
+
+targets = {
+	doc = {
+		input   = "none"
+		output  = "none"
+		command = "true"
+		
+		files = {
+			"*.html.txt" = process
+		}
+	}
+}
+
+process = {
+	input   = "$(file)"
+	output  = "$(patsubst %.html.txt,%.html,$(file))"
+	command = "tmplfill $(template) $(output) content=@$(input) style_dir=$(style_dir) email=$(email) title=TITLE"
+}
